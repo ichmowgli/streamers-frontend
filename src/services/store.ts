@@ -22,8 +22,8 @@ export type Streamer = {
   dislike: number;
 };
 
-const API_URL = env.API_URL || env.NEXT_PUBLIC_API_URL;
-const WS_URL = env.WS_URL || env.NEXT_PUBLIC_WS_URL;
+const API_URL = env.NEXT_PUBLIC_API_URL || env.API_URL;
+const WS_URL = env.NEXT_PUBLIC_WS_URL || env.WS_URL;
 
 const fetchStreamers = (): Promise<Streamer[]> => {
   return fetch(`${API_URL}/streamers`).then((data) => data.json());
