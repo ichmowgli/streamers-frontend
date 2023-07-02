@@ -162,7 +162,7 @@ export const useStreamerStore = create<Store>((set, get) => ({
   connectToWs: () => {
     if (get().ws) return;
 
-    const io = SocketIOClient("ws://localhost:3002", {
+    const io = SocketIOClient("ws://localhost:3001", {
       upgrade: true,
     });
 

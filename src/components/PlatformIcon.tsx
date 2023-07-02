@@ -31,6 +31,8 @@ const PlatformIcon: FC<PlatformIconProps> = ({ platform }) => {
     case "KICK":
       return <RiKickLine size={21} />;
   }
+
+  return <BsTwitch size={21} />;
 };
 
 export default PlatformIcon;
