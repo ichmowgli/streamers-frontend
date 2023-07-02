@@ -4,10 +4,10 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    NEXT_PUBLIC_API_DOMAIN: z.string().url(),
+    NEXT_PUBLIC_API_DOMAIN: z.string(),
   },
   client: {
-    NEXT_PUBLIC_API_DOMAIN: z.string().url(),
+    NEXT_PUBLIC_API_DOMAIN: z.string(),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
