@@ -12,6 +12,10 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "",
+    NEXT_PUBLIC_WS_URL: process.env.NEXT_PUBLIC_WS_URL || "",
+  },
 };
 
 export default config;
