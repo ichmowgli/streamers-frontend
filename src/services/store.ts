@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { type Socket } from "socket.io-client";
 import { create } from "zustand";
@@ -21,16 +22,15 @@ export type Streamer = {
   dislike: number;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const API_URL =
   env.NODE_ENV === "production"
-    ? `https://${env.NEXT_PUBLIC_API_DOMAIN}`
-    : `http://${env.NEXT_PUBLIC_API_DOMAIN}`;
+    ? `https://${process.env.NEXT_PUBLIC_API_DOMAIN!}`
+    : `http://${process.env.NEXT_PUBLIC_API_DOMAIN!}`;
 
 const WS_URL =
   env.NODE_ENV === "production"
-    ? `wss://${env.NEXT_PUBLIC_API_DOMAIN}`
-    : `ws://${env.NEXT_PUBLIC_API_DOMAIN}`;
+    ? `wss://${process.env.NEXT_PUBLIC_API_DOMAIN!}`
+    : `ws://${process.env.NEXT_PUBLIC_API_DOMAIN!}`;
 
 const fetchStreamers = (): Promise<Streamer[]> => {
   return fetch(`${API_URL}/streamers`).then((data) => data.json());
