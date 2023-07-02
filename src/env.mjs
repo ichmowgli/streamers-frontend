@@ -4,14 +4,14 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    NEXT_PUBLIC_API_URL: z.string().url(),
+    NEXT_PUBLIC_API_DOMAIN: z.string().url(),
   },
   client: {
-    NEXT_PUBLIC_API_URL: z.string().url(),
+    NEXT_PUBLIC_API_DOMAIN: z.string().url(),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_API_DOMAIN: process.env.NEXT_PUBLIC_API_DOMAIN,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });

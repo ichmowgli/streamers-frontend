@@ -2,6 +2,7 @@
 import { type Socket } from "socket.io-client";
 import { create } from "zustand";
 import SocketIOClient from "socket.io-client";
+import { env } from "~/env.mjs";
 
 export enum Platform {
   TWITCH = "TWITCH",
@@ -21,7 +22,15 @@ export type Streamer = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+const API_URL =
+  env.NODE_ENV === "production"
+    ? `https://${env.NEXT_PUBLIC_API_DOMAIN}`
+    : `http://${env.NEXT_PUBLIC_API_DOMAIN}`;
+
+const WS_URL =
+  env.NODE_ENV === "production"
+    ? `wss://${env.NEXT_PUBLIC_API_DOMAIN}`
+    : `ws://${env.NEXT_PUBLIC_API_DOMAIN}`;
 
 const fetchStreamers = (): Promise<Streamer[]> => {
   return fetch(`${API_URL}/streamers`).then((data) => data.json());
@@ -162,7 +171,7 @@ export const useStreamerStore = create<Store>((set, get) => ({
   connectToWs: () => {
     if (get().ws) return;
 
-    const io = SocketIOClient("ws://localhost:3001", {
+    const io = SocketIOClient(WS_URL, {
       upgrade: true,
     });
 
