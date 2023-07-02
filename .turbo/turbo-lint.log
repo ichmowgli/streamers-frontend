@@ -1,5 +1,0 @@
-
-> frontend@0.1.0 lint /Users/mowgli.codes/streamers/apps/frontend
-> eslint --fix src
-
- ELIFECYCLE  Command failed.
