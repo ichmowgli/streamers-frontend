@@ -3,7 +3,6 @@
 import { type Socket } from "socket.io-client";
 import { create } from "zustand";
 import SocketIOClient from "socket.io-client";
-import { env } from "~/env.mjs";
 
 export enum Platform {
   TWITCH = "TWITCH",
@@ -22,15 +21,8 @@ export type Streamer = {
   dislike: number;
 };
 
-const API_URL =
-  env.NODE_ENV === "production"
-    ? `https://${process.env.NEXT_PUBLIC_API_DOMAIN!}`
-    : `http://${process.env.NEXT_PUBLIC_API_DOMAIN!}`;
-
-const WS_URL =
-  env.NODE_ENV === "production"
-    ? `wss://${process.env.NEXT_PUBLIC_API_DOMAIN!}`
-    : `ws://${process.env.NEXT_PUBLIC_API_DOMAIN!}`;
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL!;
 
 const fetchStreamers = (): Promise<Streamer[]> => {
   return fetch(`${API_URL}/streamers`).then((data) => data.json());
